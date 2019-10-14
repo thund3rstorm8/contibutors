@@ -1,0 +1,9 @@
+
+<h1>регексп валидных запросов: https:\/\/github\.com\/[\w\d\-\_\/]{1,}</h1>
+
+<%= form_tag(result_path, method: :get) do %>
+<%= label_tag(:search, "Гитхабчик:") %>
+<%= text_field_tag(:search, params[:search]) %>
+<%= submit_tag ("пыщ") %>
+<% end %>
+
