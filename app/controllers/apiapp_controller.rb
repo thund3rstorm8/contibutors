@@ -21,7 +21,7 @@ class ApiappController < ApplicationController
     if request.parameters['search'].blank? || !/https:\/\/github\.com\/[\w\d\-\_\/]{1,}/.match(request.parameters['search'])
       redirect_to :home
     else
-      puts link = request.parameters['search'].scan(/[https:\/github\.com]{1,}(\/[a-zA-Z0-9_\-]{1,}\/[a-zA-Z0-9_\-]{1,})/)[0][0]
+      link = request.parameters['search'].scan(/[https:\/github\.com]{1,}(\/[a-zA-Z0-9_\-]{1,}\/[a-zA-Z0-9_\-]{1,})/)[0][0]
       uri = URI("https://api.github.com/repos#{link}/contributors")
       con = JSON.parse(Net::HTTP.get(uri))
       @link = request.parameters['search']
