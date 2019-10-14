@@ -17,6 +17,10 @@ class ApiappController < ApplicationController
     }, status: :not_found
   end
 
+  def not_found
+    redirect_to :home
+  end
+
   def result
     if request.parameters['search'].blank? || !/https:\/\/github\.com\/[\w\d\-\_\/]{1,}/.match(request.parameters['search'])
       redirect_to :home
@@ -27,11 +31,13 @@ class ApiappController < ApplicationController
       @link = request.parameters['search']
       @contrib = []
       place = 1
-      temptime = Digest::MD5.hexdigest(Time.now.iso8601)
+      temptime = Digest::MD5.hexdigest(Time.now.iso8601 + rand(9999).to_s)
       system("mkdir storage/#{temptime}")
       folder = "#{Rails.root}/storage/#{temptime}"
       zipname = "#{Rails.root}/storage/#{temptime}/archive.zip"
       @archive = "#{temptime}/archive.zip"
+      @not = ""
+      @not = "никого нет:(" if con.empty?
       con[0..2].each do |a|
           a.to_hash
           temp = Hash.new

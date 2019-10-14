@@ -1,17 +1,20 @@
 <h1>Самые активные в:  <%= @link %></h1>
-
+<h2> <%= "#{@not}" %></h2>
 <% @contrib.each do |con| %>
 <tr>
+    <h1>---------------------------------------------</h1>
     <h2>МЕСТО <%= con['place'] %>:</h2>
   <h3> Имя: <td><%= con['1'] %> <%= link_to "#{con['2']}", con['2'] %></td></h3>
   <h3> contributuions: <td><%= con['3'] %> </td></h3>
   <h3><%= link_to "Скачать сертификат", { controller: "apiapp", action: "download", path: "#{con['link']}"}  %></h3>
+    --------------------------------------------
+
 
 </tr>
 <% end %>
 </tbody>
 
-<h3><%= link_to "Скачать архив", { controller: "apiapp", action: "download", path: "#{@archive}"}  %></h3>
+<h3><%= link_to "Скачать архив", { controller: "apiapp", action: "download", path: "#{@archive}"}  %> </h3>
 
 
 <%= form_tag(result_path, method: :get) do %>
@@ -19,3 +22,5 @@
 <%= text_field_tag(:search, params[:search]) %>
 <%= submit_tag ("пыщ") %>
 <% end %>
+
+<%= link_to "я забыл регексп", { controller: "apiapp", action: "home"}  %>
